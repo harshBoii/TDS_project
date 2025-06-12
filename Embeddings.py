@@ -47,38 +47,38 @@ def embed_text(text: str) -> list[float]:
     return response.data[0].embedding  # use `.data[0].embedding` in OpenAI SDK v1
 
 # ─── Batch upload embeddings to Pinecone ───────────────────────────────────────
+if __name__ == "__main__":
+    BATCH_SIZE = 100
+    vectors = []
 
-BATCH_SIZE = 100
-vectors = []
-
-if Path("vector_store.json").exists():
-    vectors_store = json.loads(Path("vector_store.json").read_text())
-    existing_ids = {v[0] for v in vectors_store}
-else:
-    vectors_store = []
-    existing_ids = set()
+    if Path("vector_store.json").exists():
+        vectors_store = json.loads(Path("vector_store.json").read_text())
+        existing_ids = {v[0] for v in vectors_store}
+    else:
+        vectors_store = []
+        existing_ids = set()
 
 
-for i, chunk in enumerate(chunks):
-    if chunk["id"] in existing_ids:
-        continue  # Skip if already embedded and stored
+    for i, chunk in enumerate(chunks):
+        if chunk["id"] in existing_ids:
+            continue  # Skip if already embedded and stored
 
-    vec = embed_text(chunk["text"])
-    
-    raw_meta = {
-        "source": chunk["source"],
-        **chunk["metadata"]
-    }
-    metadata = {k: v for k, v in raw_meta.items() if v is not None}
+        vec = embed_text(chunk["text"])
+        
+        raw_meta = {
+            "source": chunk["source"],
+            **chunk["metadata"]
+        }
+        metadata = {k: v for k, v in raw_meta.items() if v is not None}
 
-    vectors.append((chunk["id"], vec, metadata))
-    vectors_store.append((chunk["id"], vec, metadata))  # Save to local store too
+        vectors.append((chunk["id"], vec, metadata))
+        vectors_store.append((chunk["id"], vec, metadata))  # Save to local store too
 
-    if (i + 1) % BATCH_SIZE == 0 or (i + 1) == len(chunks):
-        index.upsert(vectors=vectors)
-        print(f"✅ Upserted {i+1}/{len(chunks)} vectors")
-        vectors = []
+        if (i + 1) % BATCH_SIZE == 0 or (i + 1) == len(chunks):
+            index.upsert(vectors=vectors)
+            print(f"✅ Upserted {i+1}/{len(chunks)} vectors")
+            vectors = []
 
-        # 💾 Save current vector store to disk
-        with open("vector_store.json", "w") as f:
-            json.dump(vectors_store, f)
+            # 💾 Save current vector store to disk
+            with open("vector_store.json", "w") as f:
+                json.dump(vectors_store, f)
