@@ -5,8 +5,19 @@ from bs4 import BeautifulSoup
 from typing import List, Dict
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Text Chunking API")
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or replace "*" with a list of allowed origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # ─── Helper functions ──────────────────────────────────────────────────────────
 

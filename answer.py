@@ -10,15 +10,6 @@ from typing import List, Dict, Optional
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 
-app=FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Or replace "*" with a list of allowed origins
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 
 def retrieve(question: str, top_k: int = 10) -> List[Dict]:
