@@ -1,0 +1,1 @@
+{"version":3,"file":"offTopic.d.ts","sourceRoot":"","sources":["../../../../src/redteam/plugins/offTopic.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,iBAAiB,EAAE,MAAM,QAAQ,CAAC;AAE3C,qBAAa,oBAAqB,SAAQ,iBAAiB;IACzD,QAAQ,CAAC,EAAE,iCAAiC;IAC5C,MAAM,SAAM;IAEZ,YAAY,CAAC,IAAI,EAAE;QAAE,OAAO,EAAE,MAAM,CAAC;QAAC,MAAM,EAAE,MAAM,CAAC;QAAC,MAAM,EAAE,MAAM,CAAA;KAAE,GAAG,MAAM;CA8ChF"}

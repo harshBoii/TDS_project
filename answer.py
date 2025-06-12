@@ -120,6 +120,5 @@ def answer_question(question: str, image_base64: Optional[str] = None) -> str:
         "links": links
     }
 
-
-# Quick test
-print(answer_question("The question asks to use gpt-3.5-turbo-0125 model but the ai-proxy provided by Anand sir only supports gpt-4o-mini. So should we just use gpt-4o-mini or use the OpenAI API for gpt3.5 turbo?"))
+if __name__ == "__main__":
+    print(answer_question("The question asks to use gpt-3.5-turbo-0125 model but the ai-proxy provided by Anand sir only supports gpt-4o-mini. So should we just use gpt-4o-mini or use the OpenAI API for gpt3.5 turbo?"))

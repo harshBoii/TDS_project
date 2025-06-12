@@ -1,0 +1,1 @@
+{"version":3,"file":"defaults.d.ts","sourceRoot":"","sources":["../../../../src/providers/mistral/defaults.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,6BAA6B,EAAE,wBAAwB,EAAE,MAAM,YAAY,CAAC;AAErF,eAAO,MAAM,wBAAwB,0BAAiC,CAAC;AACvE,eAAO,MAAM,sBAAsB,+BAA4D,CAAC;AAChG,eAAO,MAAM,0BAA0B,+BAOtC,CAAC;AACF,eAAO,MAAM,0BAA0B,+BAA4D,CAAC;AACpG,eAAO,MAAM,yBAAyB,+BAA4D,CAAC"}
